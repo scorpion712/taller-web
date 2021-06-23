@@ -12,17 +12,14 @@ $ cd web-store
 ```
 
 ### Prerequisites 📋
+
 #### Setup MongoDB
 
 
 ### Installing 🔧
-### 3. Run Backend
 
-```
-$ npm install
-$ npm run server
-```
-or
+#### Run Backend
+
 ```
 $ npm install
 $ node backend/server.js
