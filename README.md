@@ -4,8 +4,6 @@ _Very simple project to final practice for "Taller de Desarrollo Web" optative s
 
 ## Getting Started 🚀
 
-## Getting Started 🚀
-
 ### Clone repo
 
 ```
