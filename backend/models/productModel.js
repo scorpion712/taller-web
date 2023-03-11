@@ -2,13 +2,17 @@ const mongoose = require('mongoose');
 
 // Product Model
 const productSchema = new mongoose.Schema({
-    name: String,
+    id: Number,
+    title: String,
     description: String,
     price: Number,
+    discountPercentage: Number,
     stock: Number,
-    color: [ String ],
-    image: String,
-    categories: [ String ] 
+    rating: Number,
+    brand: String,
+    category: String,
+    thumbnail: String,
+    images: [ String ] 
 });
 
 module.exports = mongoose.model('Product', productSchema);
