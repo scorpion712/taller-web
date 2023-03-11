@@ -31,9 +31,7 @@ app.use(express.urlencoded({extended: true}));
 // adding API routes and controller
 app.use('/api', productRouter);
 app.use('/api', orderRouter);
-app.use('/', (req, res)=> {
-    //res.send({"hola":"MUNDO"});
-});
+
 app.listen(config.PORT, ()=> {
     console.log("Server started at http://localhost:" + config.PORT);
 });
