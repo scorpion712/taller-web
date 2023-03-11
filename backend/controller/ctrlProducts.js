@@ -1,7 +1,7 @@
 const Product = require('../models/productModel');
-const mongoose = require('mongoose');
+const fs = require('fs')
 
-// fetch products by given query. If there is not query, get all products 
+// fetch products  
 module.exports.fetchProducts = async (req, res) => {
     try {
         const product = await Product.find({});
@@ -20,14 +20,28 @@ module.exports.getProductById = async (req, res) => {
     } catch (error) { 
         res.status(404).send({message: 'Product Not Found. ' + error.message});
     }
+} 
+// update product by given id
+module.exports.updateProduct = async (req, res) => {
+    try {
+        const updated = await Product.updateOne({_id: req.params.product_id}, req.body); // body contains the updated prouct
+        res.send(updated);
+    } catch (error) {
+        res.status(404).send({message: 'Can not update product. Error: ' + error.message});
+    }
 }
 
-// save a new product
-module.exports.createProduct = async (req, res) => {
+// mock existing products
+module.exports.mockProducts = async (req, res) => {
     try {  
-        const newProduct = await new Product(req.body);
-        const product = await newProduct.save(); 
-        res.send(product);
+        const data = JSON.parse(fs.readFileSync('./data.json', 'utf-8'))
+        const existsProducts = await Product.find({}) != {};
+        if (!existsProducts) {
+            const products = await Product.insertMany(data.products); 
+            res.send(products);
+        } else {
+            res.send([]);
+        }
     } catch (error) {
         res.status(404).send({message: 'Product not created.'+ error.message});
     }
@@ -37,24 +51,4 @@ module.exports.createProduct = async (req, res) => {
         err ? res.status(404).send({message: error}) : res.send(product);    
     });
     */
-}
-
-// delete a product by given id
-module.exports.deleteProduct = async (req, res) => {
-    try { 
-        const deleted = await Product.findOneAndDelete({_id: req.params.product_id});
-        res.send(deleted);
-    } catch (error) {
-        res.status(404).send({message: 'Product id not found. ' + error.message});
-    }
-}
-
-// update product by given id
-module.exports.updateProduct = async (req, res) => {
-    try {
-        const updated = await Product.updateOne({_id: req.params.product_id}, req.body); // body contains the updated prouct
-        res.send(updated);
-    } catch (error) {
-        res.status(404).send({message: 'Can not update product. Error: ' + error.message});
-    }
 }
