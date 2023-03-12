@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import {
   Avatar,
   Divider,
@@ -10,17 +10,21 @@ import {
 } from "@mui/material";
 import DeleteIcon from "@mui/icons-material/Delete";
 
-import { Product } from "../models/Product.model";
+import CartContext from "./context/CartContext";
+import { removeFromCart } from "./services/cart.service";
+import { CartItem }  from "./models/cart.model";
 
 interface CartItemProps {
-  item: Product;
+  item: CartItem;
 }
 
-export const CartItem = (props: CartItemProps) => {
+export const CartItemComponent = (props: CartItemProps) => {
   const { item: product } = props;
 
-  const handleDeleteItem = (item: Product) => {
-    console.log("Service to delete " + item.id);
+  const {dispatch, cartItems} = useContext(CartContext);
+
+  const handleDeleteItem = (item: CartItem) => {
+    removeFromCart(dispatch, cartItems, item)
   };
 
   return (
@@ -54,7 +58,7 @@ export const CartItem = (props: CartItemProps) => {
                 variant="h6"
                 color="text.primary"
               >
-                {product.stock + " x"}
+                {product.units + " x"}
                 {`$${product.price}`}
               </Typography>
             </React.Fragment>
