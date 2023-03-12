@@ -1,13 +1,15 @@
-
-import './App.css';
-import ProductState from './context/ProductState';
-import { MainPage } from './main/view/MainPage';
+import "./App.css";
+import CartState from "./cart/context/CartState";
+import ProductState from "./context/ProductState";
+import { MainPage } from "./main/view/MainPage";
 
 function App() {
   return (
-    <ProductState>
-      <MainPage/>
-    </ProductState>
+    <CartState>
+      <ProductState>
+        <MainPage />
+      </ProductState>
+    </CartState>
   );
 }
 
