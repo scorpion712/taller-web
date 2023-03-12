@@ -1,8 +1,6 @@
 import {
-  Alert,
-  AppBar,
-  Box,
-  Button,
+  Alert, 
+  Box, 
   Card,
   CardActions,
   CardContent,
@@ -16,19 +14,17 @@ import {
   Drawer,
   Grid,
   IconButton,
-  Slide,
-  Toolbar,
+  Slide, 
   Typography,
 } from "@mui/material";
 import React, { useContext, useEffect, useState } from "react";
 import AddShoppingCartIcon from "@mui/icons-material/AddShoppingCart";
-import PersonIcon from "@mui/icons-material/Person";
-import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 
 import ProductContext from "../../context/ProductContext";
 import { fetchProducts } from "../services/product.service";
 import StickyFooter from "../../components/Footer";
 import { TransitionProps } from "@mui/material/transitions";
+import { MyAppBar } from "../../components/MyAppBar";
 
 const Transition = React.forwardRef(function Transition(
   props: TransitionProps & {
@@ -57,25 +53,7 @@ export const MainPage = () => {
   return (
     <>
       <CssBaseline />
-      <AppBar position="static">
-        <Toolbar>
-          <Container>
-            <Typography sx={{ flexGrow: 1 }} variant="h5" component="div">
-              Web Store
-            </Typography>
-          </Container>
-          <IconButton
-            size="large"
-            color="inherit"
-            onClick={() => setOpenCart(!openCart)}
-          >
-            <ShoppingCartIcon />
-          </IconButton>
-          <IconButton size="large" color="inherit" sx={{ mr: 20 }}>
-            <PersonIcon />
-          </IconButton>
-        </Toolbar>
-      </AppBar>
+      <MyAppBar />
       <Drawer
         anchor={"right"}
         open={openCart}
