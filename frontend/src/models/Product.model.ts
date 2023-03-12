@@ -9,7 +9,7 @@ export interface Product {
     brand: string;
     category: string;
     thumbnail: string;
-    images: [ string ]; 
+    images: string []; 
 }
 
 export interface ProductWS {
@@ -24,5 +24,5 @@ export interface ProductWS {
     brand: string;
     category: string;
     thumbnail: string;
-    images: [ string ]; 
+    images: string[]; 
 }
