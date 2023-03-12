@@ -7,56 +7,16 @@ import {
   Typography,
 } from "@mui/material";
 import { Box } from "@mui/system";
-import React from "react";
+import React, { useContext } from "react";
 
-import { Product } from "../models/Product.model";
-import { CartItem } from "./CartItem";
+import { CartItemComponent } from "./CartItem";
+import CartContext from "./context/CartContext"; 
+import { clearCart } from "./services/cart.service";
 
 interface CartDrawerProps {
   open: boolean;
   onClose: () => void;
 }
-
-const products: Product[] = [
-  {
-    id: 1,
-    title: "iPhone 9",
-    description: "An apple mobile which is nothing like apple",
-    price: 549,
-    discountPercentage: 12.96,
-    rating: 4.69,
-    stock: 94,
-    brand: "Apple",
-    category: "smartphones",
-    thumbnail: "https://i.dummyjson.com/data/products/1/thumbnail.jpg",
-    images: [
-      "https://i.dummyjson.com/data/products/1/1.jpg",
-      "https://i.dummyjson.com/data/products/1/2.jpg",
-      "https://i.dummyjson.com/data/products/1/3.jpg",
-      "https://i.dummyjson.com/data/products/1/4.jpg",
-      "https://i.dummyjson.com/data/products/1/thumbnail.jpg",
-    ],
-  },
-  {
-    id: 2,
-    title: "iPhone X",
-    description:
-      "SIM-Free, Model A19211 6.5-inch Super Retina HD display with OLED technology A12 Bionic chip with ...",
-    price: 899,
-    discountPercentage: 17.94,
-    rating: 4.44,
-    stock: 34,
-    brand: "Apple",
-    category: "smartphones",
-    thumbnail: "https://i.dummyjson.com/data/products/2/thumbnail.jpg",
-    images: [
-      "https://i.dummyjson.com/data/products/2/1.jpg",
-      "https://i.dummyjson.com/data/products/2/2.jpg",
-      "https://i.dummyjson.com/data/products/2/3.jpg",
-      "https://i.dummyjson.com/data/products/2/thumbnail.jpg",
-    ],
-  },
-];
 
 const CartSummary = ({ total, subtotal, discount }: any) => {
   return (
@@ -90,23 +50,30 @@ const CartSummary = ({ total, subtotal, discount }: any) => {
 export const CartDrawer = (props: CartDrawerProps) => {
   const { open, onClose } = props;
 
-    const cartSubtotal = products.reduce((sum, p) => (sum += p.price), 0).toFixed(2);
-    const cartDiscount = products.reduce((sum, p) => (sum += (p.price * p.discountPercentage) / 100), 0).toFixed(2);
-    const cartTotal = products.reduce((sum, p) => (sum += p.price * (1 - p.discountPercentage / 100)), 0).toFixed(2);
+  const { dispatch, cartItems } = useContext(CartContext);
 
-    const handleCancelOrder = () => {
-        console.log('service to clear cart')
-        console.log('reload memory stock')
-    }
+  const cartSubtotal = cartItems
+    .reduce((sum, p) => (sum += p.price), 0)
+    .toFixed(2);
+  const cartDiscount = cartItems
+    .reduce((sum, p) => (sum += (p.price * p.discountPercentage) / 100), 0)
+    .toFixed(2);
+  const cartTotal = cartItems
+    .reduce((sum, p) => (sum += p.price * (1 - p.discountPercentage / 100)), 0)
+    .toFixed(2);
 
-    const handlePurchase = () => {
-        console.log('go to checkout page');
-    }
+  const handleCancelOrder = () => {
+    clearCart(dispatch);
+  };
+
+  const handlePurchase = () => {
+    console.log("go to checkout page");
+  }; 
 
   return (
     <Drawer anchor={"right"} open={open} onClose={onClose}>
       <Box sx={{ width: 350 }} role="presentation">
-        {products ? (
+        {cartItems.length > 0 ? (
           <>
             <Box
               style={{
@@ -120,25 +87,30 @@ export const CartDrawer = (props: CartDrawerProps) => {
             <List
               sx={{ width: "100%", maxWidth: 360, bgcolor: "background.paper" }}
             >
-              {products.map((product) => (
-                <CartItem key={product.id} item={product} />
+              {cartItems.map((product) => (
+                <CartItemComponent key={product.id} item={product} />
               ))}
               <CartSummary
                 total={cartTotal}
                 subtotal={cartSubtotal}
                 discount={cartDiscount}
               />
-              <ListItem
-                style={{ display: "flex", justifyContent: "center" }}
-              >
-                <Button variant="contained" size="large" onClick={handlePurchase}>
+              <ListItem style={{ display: "flex", justifyContent: "center" }}>
+                <Button
+                  variant="contained"
+                  size="large"
+                  onClick={handlePurchase}
+                >
                   Finalizar Compra
                 </Button>
               </ListItem>
-              <ListItem
-                style={{ display: "flex", justifyContent: "center" }}
-              >
-                <Button variant="outlined" color="secondary" size="large" onClick={handleCancelOrder}>
+              <ListItem style={{ display: "flex", justifyContent: "center" }}>
+                <Button
+                  variant="outlined"
+                  color="secondary"
+                  size="large"
+                  onClick={handleCancelOrder}
+                >
                   Cancelar Compra
                 </Button>
               </ListItem>
@@ -148,8 +120,11 @@ export const CartDrawer = (props: CartDrawerProps) => {
           <Box
             style={{
               justifyContent: "center",
+              alignItems: 'center',
+              alignContent: 'center',
               display: "flex",
               marginTop: "1rem",
+              marginLeft: "2rem",
             }}
           >
             <Typography variant="h5">
