@@ -8,7 +8,8 @@
     API Server
 */
 const mongoose = require('mongoose'); 
-const express = require("express");  
+const express = require("express");   
+var cors = require("cors");
 const productRouter = require('./routers/productRouter');
 const orderRouter = require('./routers/orderRouter');
 const config = require('./config');
@@ -24,6 +25,7 @@ mongoose.connect(mongodbUrl, {
 }).catch((error) => console.log("error", error.message));
 
 const app = express(); 
+app.use(cors());
 // adding middleware to recognize the incoming Request Object as a JSON Object
 app.use(express.json());
 app.use(express.urlencoded({extended: true}));
