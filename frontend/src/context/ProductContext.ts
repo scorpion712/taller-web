@@ -1,5 +1,5 @@
 import React from "react";
-import { Product } from "../models/Product.model";
+import { Product, ProductDetail } from "../models/Product.model";
 
 interface IProductContext {
     dispatch: any,
@@ -7,6 +7,8 @@ interface IProductContext {
     loading: boolean,
     error?: string,
     loadingDetail: boolean,
+    errorDetail?: string,
+    detailProduct?: ProductDetail,
 }
 
 const ProductContext: React.Context<IProductContext> = React.createContext({} as IProductContext);

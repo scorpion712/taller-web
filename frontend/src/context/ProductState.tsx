@@ -18,6 +18,8 @@ const ProductState = (props: { children: JSX.Element | JSX.Element[] }) => {
         loading: state.loading,
         error: state.error,
         loadingDetail: state.loadingDetail,
+        detailProduct: state.detailProduct,
+        errorDetail: state.errorDetail,
         dispatch,
       }}
     >
