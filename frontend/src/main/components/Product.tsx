@@ -15,7 +15,7 @@ import { Product } from "../../models/Product.model";
 import CartContext from "../../cart/context/CartContext";
 import { addToCart } from "../../cart/services/cart.service";
 import { adaptCartItem } from "../adapters/cartItem.adapter";
-import { ProductDetail } from "./ProductDetail";
+import { ProductDetailDialog } from "./ProductDetailDialog";
 
 interface ProductDetailProps {
   product: Product;
@@ -77,7 +77,7 @@ export const ProductComponent = (props: ProductDetailProps) => {
         </Grid>
       )}
       {openDetail && (
-        <ProductDetail
+        <ProductDetailDialog
           open={openDetail}
           onClose={() => setOpenDetail(false)}
           productId={selectedProductId}
