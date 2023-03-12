@@ -1,17 +1,16 @@
-import {
-  AppBar, 
-  IconButton,
-  Toolbar,
-  Typography,
-} from "@mui/material";
+import { AppBar, Badge, IconButton, Toolbar, Typography } from "@mui/material";
 import { Container } from "@mui/system";
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import PersonIcon from "@mui/icons-material/Person";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import { CartDrawer } from "../cart/CartDrawer";
+import CartContext from "../cart/context/CartContext";
 
 export const MyAppBar = () => {
   const [openCart, setOpenCart] = useState(false);
+
+  const { cartItems } = useContext(CartContext);
+
   return (
     <>
       <AppBar position="static">
@@ -26,14 +25,16 @@ export const MyAppBar = () => {
             color="inherit"
             onClick={() => setOpenCart(!openCart)}
           >
-            <ShoppingCartIcon />
+            <Badge badgeContent={cartItems.reduce((t,i) => t += i.units,0)} color="secondary">
+              <ShoppingCartIcon />
+            </Badge>
           </IconButton>
           <IconButton size="large" color="inherit" sx={{ mr: 20 }}>
             <PersonIcon />
           </IconButton>
         </Toolbar>
       </AppBar>
-      <CartDrawer open={openCart} onClose={() => setOpenCart(false)}/>
+      <CartDrawer open={openCart} onClose={() => setOpenCart(false)} />
     </>
   );
 };
