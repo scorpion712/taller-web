@@ -1,9 +1,12 @@
 import { Card, CardActions, CardContent, CardHeader, CardMedia, Dialog, DialogContent, Grid, IconButton, Slide, Typography } from "@mui/material";
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import AddShoppingCartIcon from "@mui/icons-material/AddShoppingCart";
 
 import { Product } from "../../models/Product.model";
 import { TransitionProps } from "@mui/material/transitions";
+import CartContext from "../../cart/context/CartContext";
+import { addToCart } from "../../cart/services/cart.service";
+import { adaptCartItem } from "../adapters/cartItem.adapter";
 
 interface ProductDetailProps {
     product: Product;
@@ -24,9 +27,12 @@ export const ProductComponent = (props: ProductDetailProps) => {
     const [openDetail, setOpenDetail] = useState(false);
     const [selectedProductId, setSelectedProductId] = useState(0);
 
-    const handleAddToCartClick = () => {
-        console.log("Add to cart");
-      }; 
+    const { dispatch, cartItems } = useContext(CartContext);
+
+    const handleAddToCartClick = (product: Product) => {
+      const item = adaptCartItem(product);
+      addToCart(dispatch, cartItems, item);
+    }; 
     
   return (
   <>
@@ -62,7 +68,7 @@ export const ProductComponent = (props: ProductDetailProps) => {
             <IconButton
               aria-label="add to favorites"
               size="large"
-              onClick={() => handleAddToCartClick()}
+              onClick={() => handleAddToCartClick(product)}
             >
               <AddShoppingCartIcon color="success" />
             </IconButton>
@@ -84,4 +90,5 @@ export const ProductComponent = (props: ProductDetailProps) => {
       )}
       </> 
   );
-};
+}; 
+
