@@ -11,7 +11,7 @@ import ProductContext from "../../context/ProductContext";
 import { fetchProducts } from "../services/product.service";
 import StickyFooter from "../../components/Footer"; 
 import { MyAppBar } from "../../components/MyAppBar";
-import { ProductDetail } from "../components/ProductDetail";
+import { ProductComponent } from "../components/Product";
 
 export const MainPage = () => {
   const { dispatch, products, loading, error } = useContext(ProductContext); 
@@ -32,9 +32,9 @@ export const MainPage = () => {
             Something went wrong while loading products
           </Alert>
         ) : ( 
-            <Grid xs={12} md={12} container spacing={1}>
+            <Grid container spacing={1}>
               {products.map((product) => (
-                <ProductDetail product={product}  />
+                <ProductComponent product={product} key={product.id}/>
               ))}
             </Grid>  
         )}

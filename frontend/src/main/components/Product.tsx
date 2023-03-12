@@ -18,7 +18,7 @@ const Transition = React.forwardRef(function Transition(
   return <Slide direction="up" ref={ref} {...props} />;
 });
 
-export const ProductDetail = (props: ProductDetailProps) => {
+export const ProductComponent = (props: ProductDetailProps) => {
 
     const { product } = props;
     const [openDetail, setOpenDetail] = useState(false);
