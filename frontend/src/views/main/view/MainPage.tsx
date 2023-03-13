@@ -6,12 +6,12 @@ import {
   Grid,  
 } from "@mui/material";
 import React, { useContext, useEffect } from "react";
+import Footer from "../../../components/Footer";
 
-import ProductContext from "../../context/ProductContext";
-import { fetchProducts } from "../services/product.service";
-import StickyFooter from "../../components/Footer"; 
-import { MyAppBar } from "../../components/MyAppBar";
+import { MyAppBar } from "../../../components/MyAppBar"; 
+import ProductContext from "../../../context/product/ProductContext";  
 import { ProductComponent } from "../components/Product";
+import { fetchProducts } from "../services/product.service";
 
 export const MainPage = () => {
   const { dispatch, products, loading, error } = useContext(ProductContext); 
@@ -39,7 +39,7 @@ export const MainPage = () => {
             </Grid>  
         )}
       </Container>
-      <StickyFooter />
+      <Footer />
     </>
   );
 };

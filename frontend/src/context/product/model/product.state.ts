@@ -1,4 +1,5 @@
-import { Product, ProductDetail } from "../../models/Product.model";
+import { Product, ProductDetail } from "../../../views/main/models/Product.model";
+
 
 export interface IProductState {
     loading: boolean;

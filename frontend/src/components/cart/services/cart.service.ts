@@ -1,4 +1,4 @@
-import { ADD_CART_ITEM, CLEAR_CART, REMOVE_CART_ITEM } from "../../helpers/constants";
+import { ADD_CART_ITEM, CLEAR_CART, REMOVE_CART_ITEM } from "../../../helpers/constants";
 import { CartItem } from "../models/cart.model";
 
 // add given item to cart

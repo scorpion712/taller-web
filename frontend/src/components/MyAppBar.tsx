@@ -2,9 +2,9 @@ import { AppBar, Badge, IconButton, Toolbar, Typography } from "@mui/material";
 import { Container } from "@mui/system";
 import React, { useContext, useState } from "react";
 import PersonIcon from "@mui/icons-material/Person";
-import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
-import { CartDrawer } from "../cart/CartDrawer";
-import CartContext from "../cart/context/CartContext";
+import ShoppingCartIcon from "@mui/icons-material/ShoppingCart"; 
+import CartContext from "./cart/context/CartContext";
+import { CartDrawer } from "./cart/CartDrawer";
 
 export const MyAppBar = () => {
   const [openCart, setOpenCart] = useState(false);

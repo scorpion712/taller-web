@@ -10,12 +10,12 @@ import {
 } from "@mui/material";
 import React, { useContext, useState } from "react";
 import AddShoppingCartIcon from "@mui/icons-material/AddShoppingCart";
-
-import { Product } from "../../models/Product.model";
-import CartContext from "../../cart/context/CartContext";
-import { addToCart } from "../../cart/services/cart.service";
+ 
 import { adaptCartItem } from "../adapters/cartItem.adapter";
 import { ProductDetailDialog } from "./ProductDetailDialog";
+import CartContext from "../../../components/cart/context/CartContext";
+import { Product } from "../models/Product.model";
+import { addToCart } from "../../../components/cart/services/cart.service";
 
 interface ProductDetailProps {
   product: Product;

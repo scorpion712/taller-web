@@ -13,12 +13,12 @@ import React, { useContext, useEffect, useState } from "react";
 import { Carousel } from 'react-responsive-carousel';
 import 'react-responsive-carousel/lib/styles/carousel.min.css';
 
-import ProductContext from "../../context/ProductContext";
 import { fetchProductDetail } from "../services/product.service";
+import { addToCart as addItemToCart } from "../../../components/cart/services/cart.service";
 import { adaptCartItemProductDetail } from "../adapters/cartItem.adapter";
-import { addToCart as addItemToCart } from "../../cart/services/cart.service";
-import CartContext from "../../cart/context/CartContext"; 
 import { ProductDetail } from "./ProductDetail";
+import ProductContext from "../../../context/product/ProductContext";
+import CartContext from "../../../components/cart/context/CartContext";
 
 interface ProductDetailProps {
   open: boolean;

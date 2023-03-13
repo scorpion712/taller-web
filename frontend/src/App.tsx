@@ -1,8 +1,8 @@
 import { createTheme, ThemeProvider } from "@mui/material";
-import "./App.css";
-import CartState from "./cart/context/CartState";
-import ProductState from "./context/ProductState";
-import { MainPage } from "./main/view/MainPage";
+import "./App.css"; 
+import CartState from "./components/cart/context/CartState";
+import ProductState from "./context/product/ProductState"; 
+import { Router } from "./router/Router";
  
 declare module '@mui/material/styles' {
   interface Theme {
@@ -39,7 +39,7 @@ function App() {
     <ThemeProvider theme={theme}>
       <CartState>
         <ProductState>
-          <MainPage />
+          <Router/>
         </ProductState>
       </CartState>
     </ThemeProvider>

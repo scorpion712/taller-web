@@ -1,5 +1,5 @@
 import React from "react";
-import { Product, ProductDetail } from "../models/Product.model";
+import { Product, ProductDetail } from "../../views/main/models/Product.model";
 
 interface IProductContext {
     dispatch: any,

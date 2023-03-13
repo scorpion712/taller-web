@@ -1,5 +1,5 @@
-import { CartItem } from "../../cart/models/cart.model";
-import { Product, ProductDetail } from "../../models/Product.model";
+import { CartItem } from "../../../components/cart/models/cart.model";
+import { Product, ProductDetail } from "../models/Product.model";
 
 export const adaptCartItem = (product: Product) => {
     const formattedItem: CartItem = {

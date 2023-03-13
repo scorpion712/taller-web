@@ -1,4 +1,4 @@
-import { Product, ProductDetail, ProductWS } from "../../models/Product.model"; 
+import { Product, ProductDetail, ProductWS } from "../models/Product.model"; 
 
 export const adaptProduct = (product: ProductWS) => {
     const formattedProduct: Product = {

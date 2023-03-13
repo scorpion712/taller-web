@@ -1,7 +1,7 @@
 import { Grid, Rating, Typography } from "@mui/material";
 import React from "react";
 
-import { ProductDetail as ProductDetailModel } from "../../models/Product.model";
+import { ProductDetail as ProductDetailModel } from "../models/Product.model";
 import { QuantitySelector } from "./QuantitySelector";
 
 interface ProductDetailProps {
