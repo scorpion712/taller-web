@@ -26,13 +26,16 @@ export default function Footer() {
         mt: 'auto',
         backgroundColor: (theme) =>
           theme.palette.mode === 'light'
-            ? theme.palette.grey[200]
+            ? theme.palette.grey[300]
             : theme.palette.grey[800],
       }}
     >
-      <Container maxWidth="sm">
-        <Typography variant="body1">
-          Project code can be found here.
+      <Container maxWidth="sm" style={{justifyContent: 'center', alignItems:'center', display:'flex', flexDirection:'column'}}>
+      
+        <Typography variant="subtitle1">
+          Project code can be found  
+          <Link sx={{ml:.5}} color="inherit" href="https://github.com/scorpion712/taller-web">here
+          </Link>.
         </Typography>
         <Copyright />
       </Container>

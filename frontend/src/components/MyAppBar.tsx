@@ -25,8 +25,8 @@ export const MyAppBar = () => {
             color="inherit"
             onClick={() => setOpenCart(!openCart)}
           >
-            <Badge badgeContent={cartItems.reduce((t,i) => t += i.units,0)} color="secondary">
-              <ShoppingCartIcon />
+            <Badge badgeContent={cartItems.reduce((t,i) => t += i.units,0)} color="error">
+              <ShoppingCartIcon/>
             </Badge>
           </IconButton>
           <IconButton size="large" color="inherit" sx={{ mr: 20 }}>

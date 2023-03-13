@@ -37,7 +37,7 @@ export const CartItemComponent = (props: CartItemProps) => {
             aria-label="delete"
             onClick={() => handleDeleteItem(product)}
           >
-            <DeleteIcon />
+            <DeleteIcon color='error' />
           </IconButton>
         }
       >
