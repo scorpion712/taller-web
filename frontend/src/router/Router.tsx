@@ -3,6 +3,7 @@ import {
   createBrowserRouter,
   RouterProvider,
 } from "react-router-dom"; 
+import ErrorPage from '../views/ErrorPage';
 
 import { MainPage } from '../views/main/view/MainPage';
 
@@ -11,6 +12,7 @@ const router = createBrowserRouter([
     {
       path: "/",
       element: <MainPage/>,
+      errorElement: <ErrorPage />,
     },
     {
       path: "/login",
