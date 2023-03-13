@@ -4,6 +4,7 @@ import {
   RouterProvider,
 } from "react-router-dom"; 
 import ErrorPage from '../views/ErrorPage';
+import { LoginPage } from '../views/login/LoginPage';
 
 import { MainPage } from '../views/main/view/MainPage';
 
@@ -16,7 +17,7 @@ const router = createBrowserRouter([
     },
     {
       path: "/login",
-      element: <div>Create Login Page</div>,
+      element: <LoginPage />,
     },
     {
       path: "/checkout",
