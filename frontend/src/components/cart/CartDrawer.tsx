@@ -11,7 +11,6 @@ import React, { useContext } from "react";
 
 import { CartItemComponent } from "./CartItem";
 import CartContext from "./context/CartContext"; 
-import { clearCart } from "./services/cart.service";
 
 interface CartDrawerProps {
   open: boolean;
@@ -50,7 +49,7 @@ const CartSummary = ({ total, subtotal, discount }: any) => {
 export const CartDrawer = (props: CartDrawerProps) => {
   const { open, onClose } = props;
 
-  const { dispatch, cartItems } = useContext(CartContext);
+  const { clearCart, cartItems } = useContext(CartContext);
 
   const cartSubtotal = cartItems
     .reduce((sum, p) => (sum += p.price), 0)
@@ -63,7 +62,7 @@ export const CartDrawer = (props: CartDrawerProps) => {
     .toFixed(2);
 
   const handleCancelOrder = () => {
-    clearCart(dispatch);
+    clearCart();
   };
 
   const handlePurchase = () => {

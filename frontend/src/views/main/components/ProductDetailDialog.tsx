@@ -13,7 +13,6 @@ import React, { useContext, useEffect, useState } from "react";
 import { Carousel } from 'react-responsive-carousel';
 import 'react-responsive-carousel/lib/styles/carousel.min.css';
 
-import { addToCart as addItemToCart } from "../../../components/cart/services/cart.service";
 import { adaptCartItemProductDetail } from "../adapters/cartItem.adapter";
 import { ProductDetail } from "./ProductDetail"; 
 import CartContext from "../../../components/cart/context/CartContext";
@@ -44,7 +43,7 @@ export const ProductDetailDialog = (props: ProductDetailProps) => {
     fetchProductDetail
   } = useContext(ProductContext); 
   const {
-    dispatch : cartDispatch,
+    addToCart: addItemToCart,
     cartItems
   } = useContext(CartContext);
 
@@ -66,7 +65,7 @@ export const ProductDetailDialog = (props: ProductDetailProps) => {
 
   const addToCart = () => {
     const cartItem = {...adaptCartItemProductDetail(detailProduct), qty: quantity, units: quantity}
-    addItemToCart(cartDispatch, cartItems, cartItem)
+    addItemToCart(cartItems, cartItem)
   } 
 
   return (

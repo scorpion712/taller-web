@@ -11,7 +11,6 @@ import {
 import DeleteIcon from "@mui/icons-material/Delete";
 
 import CartContext from "./context/CartContext";
-import { removeFromCart } from "./services/cart.service";
 import { CartItem }  from "./models/cart.model";
 
 interface CartItemProps {
@@ -21,11 +20,11 @@ interface CartItemProps {
 export const CartItemComponent = (props: CartItemProps) => {
   const { item: product } = props;
 
-  const {dispatch, cartItems} = useContext(CartContext);
+  const {removeFromCart, cartItems} = useContext(CartContext);
 
   const handleDeleteItem = (item: CartItem) => {
-    removeFromCart(dispatch, cartItems, item)
-  };
+    removeFromCart(cartItems, item);
+  }
 
   return (
     <React.Fragment key={product.id}>

@@ -1,7 +1,7 @@
 import { createTheme, ThemeProvider } from "@mui/material";
 import "./App.css";
 import CartState from "./components/cart/context/CartState";
-import ProductState from "./views/main/context/product/ProductState";
+import ProductState from "./views/main/context/ProductState";
 import { Router } from "./router/Router";
 import AuthState from "./views/login/context/AuthState";
 

@@ -15,7 +15,6 @@ import { adaptCartItem } from "../adapters/cartItem.adapter";
 import { ProductDetailDialog } from "./ProductDetailDialog";
 import CartContext from "../../../components/cart/context/CartContext";
 import { Product } from "../models/Product.model";
-import { addToCart } from "../../../components/cart/services/cart.service";
 
 interface ProductDetailProps {
   product: Product;
@@ -26,11 +25,11 @@ export const ProductComponent = (props: ProductDetailProps) => {
   const [openDetail, setOpenDetail] = useState(false);
   const [selectedProductId, setSelectedProductId] = useState('0');
 
-  const { dispatch, cartItems } = useContext(CartContext);
+  const { addToCart, cartItems } = useContext(CartContext);
 
   const handleAddToCartClick = (product: Product) => {
     const item = adaptCartItem(product);
-    addToCart(dispatch, cartItems, item);
+    addToCart(cartItems, item);
   };
 
   return (
