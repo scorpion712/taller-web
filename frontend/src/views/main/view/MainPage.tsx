@@ -9,16 +9,15 @@ import React, { useContext, useEffect } from "react";
 import Footer from "../../../components/Footer";
 
 import { MyAppBar } from "../../../components/MyAppBar"; 
-import ProductContext from "../../../context/product/ProductContext";  
 import { ProductComponent } from "../components/Product";
-import { fetchProducts } from "../services/product.service";
+import ProductContext from "../context/ProductContext";
 
 export const MainPage = () => {
-  const { dispatch, products, loading, error } = useContext(ProductContext); 
+  const { fetchProducts, products, loading, error } = useContext(ProductContext); 
 
   useEffect(() => {
-    fetchProducts(dispatch);
-  }, [dispatch]); 
+    fetchProducts();
+  }, []); 
 
   return (
     <>

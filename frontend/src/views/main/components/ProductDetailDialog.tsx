@@ -13,12 +13,11 @@ import React, { useContext, useEffect, useState } from "react";
 import { Carousel } from 'react-responsive-carousel';
 import 'react-responsive-carousel/lib/styles/carousel.min.css';
 
-import { fetchProductDetail } from "../services/product.service";
 import { addToCart as addItemToCart } from "../../../components/cart/services/cart.service";
 import { adaptCartItemProductDetail } from "../adapters/cartItem.adapter";
-import { ProductDetail } from "./ProductDetail";
-import ProductContext from "../../../context/product/ProductContext";
+import { ProductDetail } from "./ProductDetail"; 
 import CartContext from "../../../components/cart/context/CartContext";
+import ProductContext from "../context/ProductContext";
 
 interface ProductDetailProps {
   open: boolean;
@@ -38,11 +37,11 @@ const Transition = React.forwardRef(function Transition(
 
 export const ProductDetailDialog = (props: ProductDetailProps) => {
   const { open, onClose, productId } = props;
-  const {
-    dispatch,
+  const { 
     loadingDetail,
     errorDetail: error,
     detailProduct,
+    fetchProductDetail
   } = useContext(ProductContext); 
   const {
     dispatch : cartDispatch,
@@ -52,8 +51,8 @@ export const ProductDetailDialog = (props: ProductDetailProps) => {
   const [quantity, setQuantity] = useState(1);
 
   useEffect(() => {
-    fetchProductDetail(dispatch, productId);
-  }, [dispatch, productId]);
+    fetchProductDetail(productId);
+  }, [productId]);
 
   const handleAddToCart = () => {
     addToCart();
