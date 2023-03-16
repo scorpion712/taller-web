@@ -1,11 +1,11 @@
 import React from "react";
-import { User } from "../models/auth.models";
+import { LoginForm, User } from "../models/auth.models";
 
 interface IAuthContext {
     loading: boolean;
-    error?: string;
-    dispatch: any; 
+    error?: string; 
     user?: User;
+    validateLogin: (user: LoginForm) => void;
 }
 
 const AuthContext: React.Context<IAuthContext> = React.createContext({} as IAuthContext);

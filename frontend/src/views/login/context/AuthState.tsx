@@ -1,5 +1,7 @@
 import { useReducer } from "react";   
+import { LoginForm } from "../models/auth.models";
 import { IAuthState } from "../models/auth.state";
+import { validateLogin as validateLoginService } from "../services/auth.service";
 import AuthContext from "./AuthContext";
 import authReducer from "./reducers/auth.reducer";
 
@@ -10,13 +12,17 @@ const initialState: IAuthState = {
 const AuthState = (props: { children: JSX.Element | JSX.Element[] }) => {
   const [state, dispatch] = useReducer(authReducer, initialState);
 
+    const validateLogin = (user: LoginForm) => {
+        validateLoginService(dispatch, user);
+    }
+
   return (
     <AuthContext.Provider
       value={{
         loading: state.loading,
         error: state.error,
         user: state.user,
-        dispatch,
+        validateLogin: validateLogin,
       }}
     >
       {props.children}

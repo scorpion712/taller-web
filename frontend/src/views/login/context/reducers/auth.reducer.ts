@@ -1,7 +1,7 @@
 import { AUTH_LOGIN_FAIL, AUTH_LOGIN_REQUEST, AUTH_LOGIN_SUCCESS } from "../../../../helpers/constants";
 import { IAuthState } from "../../models/auth.state";
 
-function authReducer(state: IAuthState, action: any) {
+function authReducer(state: IAuthState, action: any) : IAuthState {
     switch (action.type) {
         case AUTH_LOGIN_REQUEST:
             return { ...state, loading: true }; 
